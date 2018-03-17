@@ -56,8 +56,8 @@ object StarWarsApi {
 
 
 
-    fun getRetrofit() = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+    fun getRetrofit(baseUrl: String = BASE_URL) = Retrofit.Builder()
+            .baseUrl(baseUrl)
             .client(getClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
