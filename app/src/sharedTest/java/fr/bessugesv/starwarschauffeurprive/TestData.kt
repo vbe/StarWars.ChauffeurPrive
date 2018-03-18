@@ -25,7 +25,7 @@ val YAVIN_4_TO_NABOO_TRIP = Trip().apply {
     pickUp = Destination().apply {
         name = "Yavin 4"
         picturePath = "/static/yavin-4.png"
-        date = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+        date = Calendar.getInstance(TimeZone.getDefault()).apply {
             set(Calendar.YEAR, 2017)
             set(Calendar.MONTH, Calendar.DECEMBER)
             set(Calendar.DAY_OF_MONTH, 9)
@@ -38,7 +38,7 @@ val YAVIN_4_TO_NABOO_TRIP = Trip().apply {
     dropOff = Destination().apply {
         name = "Naboo"
         picturePath = "/static/naboo.png"
-        date = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+        date = Calendar.getInstance(TimeZone.getDefault()).apply {
             set(Calendar.YEAR, 2017)
             set(Calendar.MONTH, Calendar.DECEMBER)
             set(Calendar.DAY_OF_MONTH, 9)

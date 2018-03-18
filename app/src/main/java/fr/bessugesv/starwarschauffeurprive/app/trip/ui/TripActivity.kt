@@ -47,7 +47,6 @@ class TripActivity : AppCompatActivity()  {
                 binding.textPilot.text = trip?.pilot?.name
                 Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip?.pilot?.avatarPath).into(binding.image)
 
-                val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
                 // pick up
                 binding.infoPickUp?.data = TripDataMappers.tripPickUpToInfoBlockData(this@TripActivity, trip)
                 // drop off

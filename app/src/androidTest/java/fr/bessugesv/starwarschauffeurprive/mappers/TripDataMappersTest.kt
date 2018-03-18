@@ -29,7 +29,7 @@ class TripDataMappersTest {
     fun tripPickUpToInfoBlockData() {
         assertThat(
                 TripDataMappers.tripPickUpToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
-                equalTo(InfoBlockData("Departure", "YAVIN 4", "7:35 PM"))
+                equalTo(InfoBlockData("Departure", "YAVIN 4", "2:12 PM"))
         )
     }
 
@@ -37,7 +37,7 @@ class TripDataMappersTest {
     fun tripDropOffToInfoBlockData() {
         assertThat(
                 TripDataMappers.tripDropOffToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
-                equalTo(InfoBlockData("Arrival", "NABOO", "2:12 PM"))
+                equalTo(InfoBlockData("Arrival", "NABOO", "7:35 PM"))
         )
     }
 
