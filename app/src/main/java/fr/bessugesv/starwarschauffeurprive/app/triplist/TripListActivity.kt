@@ -1,15 +1,15 @@
 package fr.bessugesv.starwarschauffeurprive.app.triplist
 
-import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,10 +50,16 @@ class TripListActivity : AppCompatActivity() {
     }
 
 
-    class VH(context: Context) : RecyclerView.ViewHolder(TextView(context)) {
-        val textView: TextView = itemView as TextView
+    class VH(
+            parent: ViewGroup,
+            val binding: ItemTripListBinding = ItemTripListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(trip: Trip) {
-            textView.text = "${trip.pilot?.name} is going from ${trip.pickUp?.name} to ${trip.dropOff?.name}"
+            Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip.pilot?.avatarPath).into(binding.image)
+            binding.textPilot.text = trip.pilot?.name
+            binding.textFrom.text = trip.pickUp?.name
+            binding.textTo.text = trip.dropOff?.name
         }
     }
 
@@ -63,7 +69,7 @@ class TripListActivity : AppCompatActivity() {
 
         override fun getItemCount() = data.size
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VH(parent.context)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VH(parent)
 
         override fun onBindViewHolder(holder: VH, position: Int) {
             holder.bind(data[position])
