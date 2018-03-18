@@ -1,0 +1,55 @@
+package fr.bessugesv.starwarschauffeurprive.common
+
+import android.content.Context
+import android.databinding.DataBindingUtil
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import fr.bessugesv.starwarschauffeurprive.R
+import fr.bessugesv.starwarschauffeurprive.databinding.ViewRateBinding
+
+/**
+ * Created by Vincent on 3/18/2018.
+ */
+class RateView : FrameLayout {
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+    private val binding: ViewRateBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.view_rate, this, true)
+
+    private val starSize = resources.getDimensionPixelSize(R.dimen.rate_star_size)
+    val starImages: List<ImageView> by lazy {
+        List(5, {
+            ImageView(context).also {
+                binding.starContainer.addView(it, starSize, starSize)
+            }
+        })
+    }
+
+    var rate: Float? = null
+        set(value) {
+            if (field == value) {
+                return
+            }
+            if (value == null || value == 0f) {
+                binding.textNoRate.visibility = View.VISIBLE
+                binding.starContainer.visibility = View.GONE
+            }
+            else {
+                binding.textNoRate.visibility = View.GONE
+                binding.starContainer.visibility = View.VISIBLE
+                starImages.forEachIndexed { index, imageView ->
+                    imageView.setImageResource(
+                            if (value >= index + 1)
+                                R.drawable.img_star_filled
+                            else
+                                R.drawable.img_star_empty
+                    )
+                }
+            }
+            field = value
+        }
+}

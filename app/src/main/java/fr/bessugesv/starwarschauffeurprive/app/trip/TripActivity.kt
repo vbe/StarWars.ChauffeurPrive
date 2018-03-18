@@ -58,6 +58,8 @@ class TripActivity : AppCompatActivity()  {
                 // duration
                 binding.infoDuration.label = getString(R.string.Trip_Duration)
                 binding.infoDuration.value = trip?.duration?.toString()
+                // rating
+                binding.rate.rate = trip?.pilot?.rating
             }
 
             override fun onFailure(call: Call<Trip>?, t: Throwable?) {

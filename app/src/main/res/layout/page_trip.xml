@@ -86,6 +86,28 @@
             android:layout_marginStart="@dimen/margin_big"
             app:layout_constraintTop_toBottomOf="@+id/info_drop_off"
             app:layout_constraintStart_toStartOf="@+id/guideline_middle"/>
+        
+        <TextView
+            android:id="@+id/text_rate_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/info_distance"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            android:text="@string/Pilot_Rating"
+            style="@style/TextInfoLabel"/>
+
+        <fr.bessugesv.starwarschauffeurprive.common.RateView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_rate_label"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"/>
 
     </android.support.constraint.ConstraintLayout>
 

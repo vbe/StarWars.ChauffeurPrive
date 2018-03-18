@@ -5,4 +5,6 @@
     <string name="distance_with_unit">%1$s %2$s</string>
     <string name="Arrival">Arrival</string>
     <string name="Trip_Duration">Trip Duration</string>
+    <string name="User_Did_Not_Rate_Yet">USER DIDN\'T RATE YET</string>
+    <string name="Pilot_Rating">Pilot Rating</string>
 </resources>
