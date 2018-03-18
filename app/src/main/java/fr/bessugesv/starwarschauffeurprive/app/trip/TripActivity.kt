@@ -15,6 +15,8 @@ import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Vincent on 3/18/2018.
@@ -40,7 +42,22 @@ class TripActivity : AppCompatActivity()  {
                 val trip = response?.body()
                 binding.textPilot.text = trip?.pilot?.name
                 Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip?.pilot?.avatarPath).into(binding.image)
-                binding.image
+
+                val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                // pick up
+                binding.infoPickUp.label = getString(R.string.Departure)
+                binding.infoPickUp.value = trip?.pickUp?.name
+                binding.infoPickUp.details = format.format(trip?.pickUp?.date)
+                // drop off
+                binding.infoDropOff.label = getString(R.string.Arrival)
+                binding.infoDropOff.value = trip?.dropOff?.name
+                binding.infoDropOff.details = format.format(trip?.dropOff?.date)
+                // distance
+                binding.infoDistance.label = getString(R.string.Trip_Distance)
+                binding.infoDistance.value = getString(R.string.distance_with_unit, trip?.distance?.value?.toString(), trip?.distance?.unit)
+                // duration
+                binding.infoDuration.label = getString(R.string.Trip_Duration)
+                binding.infoDuration.value = trip?.duration?.toString()
             }
 
             override fun onFailure(call: Call<Trip>?, t: Throwable?) {

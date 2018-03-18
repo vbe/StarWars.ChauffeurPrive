@@ -9,6 +9,7 @@
     <dimen name="trip_page_avatar_size">72dp</dimen>
 
     <!-- Common dimens -->
+    <dimen name="margin_xxsmall">2dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_big">24dp</dimen>

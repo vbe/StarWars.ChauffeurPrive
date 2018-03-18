@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">StarWars.ChauffeurPrive</string>
+    <string name="Departure">Departure</string>
+    <string name="Trip_Distance">Trip Distance</string>
+    <string name="distance_with_unit">%1$s %2$s</string>
+    <string name="Arrival">Arrival</string>
+    <string name="Trip_Duration">Trip Duration</string>
 </resources>
