@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextPageTitle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="TextInfoValue">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textStyle">bold</item>

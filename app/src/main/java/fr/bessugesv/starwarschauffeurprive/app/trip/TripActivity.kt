@@ -2,11 +2,15 @@ package fr.bessugesv.starwarschauffeurprive.app.trip
 
 import android.content.Context
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.databinding.PageTripBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,13 +33,14 @@ class TripActivity : AppCompatActivity()  {
             return
         }
 
-        val textView = TextView(this)
-        setContentView(textView)
+        val binding = DataBindingUtil.setContentView<PageTripBinding>(this, R.layout.page_trip)
 
         StarWarsApi.service.trip(tripId).enqueue(object : Callback<Trip> {
             override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
                 val trip = response?.body()
-                textView.text = "${trip?.pilot?.name} is going from ${trip?.pickUp?.name} to ${trip?.dropOff?.name}"
+                binding.textPilot.text = trip?.pilot?.name
+                Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip?.pilot?.avatarPath).into(binding.image)
+                binding.image
             }
 
             override fun onFailure(call: Call<Trip>?, t: Throwable?) {
