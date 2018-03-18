@@ -14,6 +14,7 @@ import org.hamcrest.Matchers.notNullValue
 import org.junit.Assert.assertThat
 import org.junit.Before
 import java.io.File
+import java.util.*
 
 /**
  * Created by Vincent on 3/18/2018.
@@ -52,12 +53,28 @@ abstract class ParsingTest {
         pickUp = Destination().apply {
             name = "Yavin 4"
             picturePath = "/static/yavin-4.png"
-            date = "2017-12-09T14:12:51Z"
+            date = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+                set(Calendar.YEAR, 2017)
+                set(Calendar.MONTH, Calendar.DECEMBER)
+                set(Calendar.DAY_OF_MONTH, 9)
+                set(Calendar.HOUR_OF_DAY, 14)
+                set(Calendar.MINUTE, 12)
+                set(Calendar.SECOND, 51)
+                set(Calendar.MILLISECOND, 0)
+            }.time
         }
         dropOff = Destination().apply {
             name = "Naboo"
             picturePath = "/static/naboo.png"
-            date = "2017-12-09T19:35:51Z"
+            date = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+                set(Calendar.YEAR, 2017)
+                set(Calendar.MONTH, Calendar.DECEMBER)
+                set(Calendar.DAY_OF_MONTH, 9)
+                set(Calendar.HOUR_OF_DAY, 19)
+                set(Calendar.MINUTE, 35)
+                set(Calendar.SECOND, 51)
+                set(Calendar.MILLISECOND, 0)
+            }.time
         }
     }
 

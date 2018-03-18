@@ -1,6 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive.api
 
-import okhttp3.Interceptor
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -55,11 +55,14 @@ object StarWarsApi {
             .build()
 
 
+    fun getGson() = GsonBuilder()
+            .setDateFormat("YYYY-MM-dd'T'HH:mm:ssZ")
+            .create()
 
     fun getRetrofit(baseUrl: String = BASE_URL) = Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(getClient())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(getGson()))
             .build()
 
     val service = getRetrofit().create(StarWarsService::class.java)
