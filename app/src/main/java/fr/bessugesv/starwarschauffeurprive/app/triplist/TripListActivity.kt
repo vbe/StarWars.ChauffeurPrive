@@ -1,6 +1,8 @@
 package fr.bessugesv.starwarschauffeurprive.app.triplist
 
 import android.databinding.DataBindingUtil
+import android.graphics.Canvas
+import android.graphics.RectF
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +15,7 @@ import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.TripActivity
+import fr.bessugesv.starwarschauffeurprive.common.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
@@ -34,6 +37,7 @@ class TripListActivity : AppCompatActivity() {
         binding.list.let {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter
+            it.addItemDecoration(Separator())
         }
 
         binding.toolbar.title = getString(R.string.Last_Trips)
@@ -53,6 +57,28 @@ class TripListActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    class Separator : RecyclerView.ItemDecoration() {
+
+
+        override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+            if (HEIGHT == -1) {
+                HEIGHT = parent.context.resources.getDimensionPixelSize(R.dimen.separator_height)
+            }
+
+            for (i in 0 until parent.childCount) {
+                val view = parent.getChildAt(i)
+                val position = parent.getChildAdapterPosition(view)
+                if (position < parent.adapter.itemCount - 1) {
+                    SeparatorView.drawOn(canvas, RectF(view.x, view.y + view.height - HEIGHT/2, view.x + view.width, view.y + view.height + HEIGHT/2))
+                }
+            }
+        }
+
+        companion object {
+            var HEIGHT = -1
+        }
     }
 
 

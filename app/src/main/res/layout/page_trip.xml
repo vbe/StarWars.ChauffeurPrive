@@ -59,7 +59,7 @@
                 <fr.bessugesv.starwarschauffeurprive.common.SeparatorView
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="@dimen/separator_height"
                     android:layout_marginTop="@dimen/margin_big"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image" />

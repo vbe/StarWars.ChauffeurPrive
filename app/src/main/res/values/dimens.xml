@@ -4,6 +4,7 @@
     <!-- List items dimens -->
     <dimen name="list_item_avatar_size">56dp</dimen>
     <dimen name="list_item_pilot_top_margin">22dp</dimen>
+    <dimen name="separator_height">10dp</dimen>
 
     <!-- Trip page dimens -->
     <dimen name="trip_page_avatar_size">72dp</dimen>
