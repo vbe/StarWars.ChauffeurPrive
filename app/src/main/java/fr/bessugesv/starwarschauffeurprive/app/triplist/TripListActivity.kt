@@ -1,5 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive.app.triplist
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.TripActivity
+import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
@@ -23,18 +25,18 @@ import retrofit2.Response
  */
 class TripListActivity : AppCompatActivity() {
 
-    lateinit var adapter: Adapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        adapter = Adapter()
+        val adapter = Adapter()
+        val binding = DataBindingUtil.setContentView<ActivityTripListBinding>(this, R.layout.activity_trip_list)
 
-        setContentView(RecyclerView(this).also {
+        binding.list.let {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter
-            it.background = ContextCompat.getDrawable(this, R.drawable.background)
-        })
+        }
+
+        binding.toolbar.title = getString(R.string.Last_Trips)
 
         StarWarsApi.service.listTrips().enqueue(object : Callback<List<Trip>> {
             override fun onResponse(call: Call<List<Trip>>?, response: Response<List<Trip>>?) {

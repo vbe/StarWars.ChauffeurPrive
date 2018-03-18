@@ -7,4 +7,5 @@
     <string name="Trip_Duration">Trip Duration</string>
     <string name="User_Did_Not_Rate_Yet">USER DIDN\'T RATE YET</string>
     <string name="Pilot_Rating">Pilot Rating</string>
+    <string name="Last_Trips">Last Trips</string>
 </resources>
