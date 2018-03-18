@@ -8,7 +8,7 @@ import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
  */
 class Trip {
     @SerializedName(StarWarsApi.Schema.Trip.ID)
-    val id: Long? = null
+    var id: Long? = null
     @SerializedName(StarWarsApi.Schema.Trip.PILOT)
     var pilot: Pilot? = null
     @SerializedName(StarWarsApi.Schema.Trip.DISTANCE)
