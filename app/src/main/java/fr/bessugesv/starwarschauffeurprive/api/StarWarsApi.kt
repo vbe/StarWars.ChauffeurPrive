@@ -56,7 +56,7 @@ object StarWarsApi {
 
 
     fun getGson() = GsonBuilder()
-            .setDateFormat("YYYY-MM-dd'T'HH:mm:ssZ")
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create()
 
     fun getRetrofit(baseUrl: String = BASE_URL) = Retrofit.Builder()
