@@ -1,6 +1,7 @@
 package fr.bessugesv.starwarschauffeurprive.app.triplist
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.TripActivity
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
@@ -31,6 +33,7 @@ class TripListActivity : AppCompatActivity() {
         setContentView(RecyclerView(this).also {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter
+            it.background = ContextCompat.getDrawable(this, R.drawable.background)
         })
 
         StarWarsApi.service.listTrips().enqueue(object : Callback<List<Trip>> {

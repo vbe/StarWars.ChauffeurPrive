@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- List items dimens -->
+    <dimen name="list_item_avatar_size">56dp</dimen>
+    <dimen name="list_item_pilot_top_margin">22dp</dimen>
+
+    <!-- Common dimens -->
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+</resources>
