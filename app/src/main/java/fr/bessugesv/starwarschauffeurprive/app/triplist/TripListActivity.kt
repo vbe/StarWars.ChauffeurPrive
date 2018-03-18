@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.app.trip.TripActivity
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
@@ -55,7 +56,18 @@ class TripListActivity : AppCompatActivity() {
             val binding: ItemTripListBinding = ItemTripListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         : RecyclerView.ViewHolder(binding.root) {
 
+        var tripId: Long? = null
+
+        init {
+            itemView.setOnClickListener { view ->
+                tripId?.let {
+                    TripActivity.openMe(view.context, it)
+                }
+            }
+        }
+
         fun bind(trip: Trip) {
+            tripId = trip.id
             Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip.pilot?.avatarPath).into(binding.image)
             binding.textPilot.text = trip.pilot?.name
             binding.textFrom.text = trip.pickUp?.name

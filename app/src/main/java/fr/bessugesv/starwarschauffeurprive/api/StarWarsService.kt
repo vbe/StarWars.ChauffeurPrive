@@ -14,5 +14,5 @@ interface StarWarsService {
     fun listTrips(): Call<List<Trip>>
 
     @GET("${StarWarsApi.PATHS.TRIPS}/{id}")
-    fun trip(@Path("id") tripId: Int): Call<Trip>
+    fun trip(@Path("id") tripId: Long): Call<Trip>
 }
