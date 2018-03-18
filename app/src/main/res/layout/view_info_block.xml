@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
-    <merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="data"
+            type="fr.bessugesv.starwarschauffeurprive.common.infoblock.InfoBlockData"/>
+
+
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
         <TextView
             android:id="@+id/text_info_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{data.label}"
             style="@style/TextInfoLabel"/>
 
         <TextView
@@ -13,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:text="@{data.value}"
             style="@style/TextInfoValue"/>
 
         <TextView
@@ -20,6 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_xxsmall"
+            android:text="@{data.details}"
+            app:visible="@{data.detailsVisible}"
             style="@style/TextInfoDetails"/>
-    </merge>
+    </LinearLayout>
 </layout>

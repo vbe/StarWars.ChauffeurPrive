@@ -1,4 +1,4 @@
-package fr.bessugesv.starwarschauffeurprive.app.trip
+package fr.bessugesv.starwarschauffeurprive.app.trip.ui
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.app.trip.mappers.TripDataMappers
 import fr.bessugesv.starwarschauffeurprive.databinding.PageTripBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
@@ -48,19 +49,13 @@ class TripActivity : AppCompatActivity()  {
 
                 val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
                 // pick up
-                binding.infoPickUp.label = getString(R.string.Departure)
-                binding.infoPickUp.value = trip?.pickUp?.name
-                binding.infoPickUp.details = format.format(trip?.pickUp?.date)
+                binding.infoPickUp?.data = TripDataMappers.tripPickUpToInfoBlockData(this@TripActivity, trip)
                 // drop off
-                binding.infoDropOff.label = getString(R.string.Arrival)
-                binding.infoDropOff.value = trip?.dropOff?.name
-                binding.infoDropOff.details = format.format(trip?.dropOff?.date)
+                binding.infoDropOff?.data = TripDataMappers.tripDropOffToInfoBlockData(this@TripActivity, trip)
                 // distance
-                binding.infoDistance.label = getString(R.string.Trip_Distance)
-                binding.infoDistance.value = getString(R.string.distance_with_unit, trip?.distance?.value?.toString(), trip?.distance?.unit)
+                binding.infoDistance?.data = TripDataMappers.distanceToInfoBlockData(this@TripActivity, trip?.distance)
                 // duration
-                binding.infoDuration.label = getString(R.string.Trip_Duration)
-                binding.infoDuration.value = trip?.duration?.toString()
+                binding.infoDuration?.data = TripDataMappers.durationToInfoBlockData(this@TripActivity, trip?.duration)
                 // rating
                 binding.rate.rate = trip?.pilot?.rating
             }

@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.graphics.Canvas
 import android.graphics.RectF
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,7 +13,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
-import fr.bessugesv.starwarschauffeurprive.app.trip.TripActivity
+import fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripActivity
 import fr.bessugesv.starwarschauffeurprive.common.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding

@@ -64,7 +64,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image" />
 
-                <fr.bessugesv.starwarschauffeurprive.common.InfoBlockView
+                <include layout="@layout/view_info_block"
                     android:id="@+id/info_pick_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,9 +72,9 @@
                     android:layout_marginLeft="@dimen/margin_big"
                     android:layout_marginStart="@dimen/margin_big"
                     app:layout_constraintTop_toBottomOf="@+id/divider"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <fr.bessugesv.starwarschauffeurprive.common.InfoBlockView
+                <include layout="@layout/view_info_block"
                     android:id="@+id/info_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.5"/>
 
-                <fr.bessugesv.starwarschauffeurprive.common.InfoBlockView
+                <include layout="@layout/view_info_block"
                     android:id="@+id/info_drop_off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider"
                     app:layout_constraintStart_toStartOf="@+id/guideline_middle"/>
 
-                <fr.bessugesv.starwarschauffeurprive.common.InfoBlockView
+                <include layout="@layout/view_info_block"
                     android:id="@+id/info_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

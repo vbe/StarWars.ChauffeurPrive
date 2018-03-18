@@ -4,9 +4,6 @@
 
 ## TODO
 
-- TripListActivity
- - Coordinator with collapsing toolbar
- - List divider
 - Helper to get full avatar urls
 - Ripple
 - Rate: handle .5 values
