@@ -14,6 +14,7 @@ import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
 import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
 import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
 import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
+import fr.bessugesv.starwarschauffeurprive.common.arch.SingleDataPresenter
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 
 /**
@@ -21,16 +22,11 @@ import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
  */
 class TripListActivity : AppCompatActivity() {
 
-    lateinit var model: TripListViewModel
-    lateinit var binding: ActivityTripListBinding
-    lateinit var adapter: TripList.Adapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        model = ViewModelProviders.of(this).get(TripListViewModel::class.java)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_list)
-        adapter = TripList.Adapter()
+        val binding = DataBindingUtil.setContentView<ActivityTripListBinding>(this, R.layout.activity_trip_list)
+        val adapter = TripList.Adapter()
 
         with(binding) {
             list.let {
@@ -39,32 +35,17 @@ class TripListActivity : AppCompatActivity() {
                 it.addItemDecoration(TripListSeparator())
             }
             toolbar.title = getString(R.string.Last_Trips)
-            btnReload.setOnClickListener {
-                loadData()
-            }
         }
 
-        loadData()
-    }
-
-    private fun loadData() {
-        model.getTripList().observe(this, Observer {
-            when (it) {
-                is LOADING -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.errorView.visibility = View.GONE
-                }
-                is SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.errorView.visibility = View.GONE
-                    adapter.data = it.data
+        SingleDataPresenter(
+                this,
+                ViewModelProviders.of(this).get(TripListViewModel::class.java),
+                binding.progressBar,
+                binding.errorView,
+                binding.btnReload, {
+                    adapter.data = it
                     adapter.notifyDataSetChanged()
                 }
-                is ERROR -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.errorView.visibility = View.VISIBLE
-                }
-            }
-        })
+        ).load()
     }
 }

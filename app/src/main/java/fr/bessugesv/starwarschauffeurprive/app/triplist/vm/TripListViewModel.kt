@@ -4,10 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
-import fr.bessugesv.starwarschauffeurprive.common.arch.DataResult
-import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
-import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
-import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
+import fr.bessugesv.starwarschauffeurprive.common.arch.*
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,14 +13,14 @@ import retrofit2.Response
 /**
  * Created by Vincent on 3/19/2018.
  */
-class TripListViewModel : ViewModel() {
+class TripListViewModel : SingleDataViewModel<List<Trip>>() {
 
     private val tripList : MutableLiveData<DataResult<List<Trip>>> by lazy {
         loadTripList()
         MutableLiveData<DataResult<List<Trip>>>().also { it.value = LOADING() }
     }
 
-    fun getTripList(): LiveData<DataResult<List<Trip>>> = tripList.also {
+    override fun getData(): LiveData<DataResult<List<Trip>>> = tripList.also {
         // reloading if last value was an error
         if (it.value is ERROR) {
             it.postValue(LOADING())
