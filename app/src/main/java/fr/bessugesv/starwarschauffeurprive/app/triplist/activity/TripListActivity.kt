@@ -41,8 +41,7 @@ class TripListActivity : AppCompatActivity() {
                 this,
                 ViewModelProviders.of(this).get(TripListViewModel::class.java),
                 binding.progressBar,
-                binding.errorView,
-                binding.btnReload, {
+                binding.errorView!!, {
                     adapter.data = it
                     adapter.notifyDataSetChanged()
                 }
