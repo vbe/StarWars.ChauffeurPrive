@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData"/>
+            type="fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockViewData"/>
 
 
     </data>

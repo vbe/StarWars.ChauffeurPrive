@@ -5,7 +5,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import fr.bessugesv.starwarschauffeurprive.YAVIN_4_TO_NABOO_TRIP
 import fr.bessugesv.starwarschauffeurprive.app.trip.mappers.TripDataMappers
-import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData
+import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockViewData
 import org.hamcrest.Matchers.equalTo
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -29,7 +29,7 @@ class TripDataMappersTest {
     fun tripPickUpToInfoBlockData() {
         assertThat(
                 TripDataMappers.InfoBlock.tripPickUpToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
-                equalTo(InfoBlockData("Departure", "YAVIN 4", "2:12 PM"))
+                equalTo(InfoBlockViewData("Departure", "YAVIN 4", "2:12 PM"))
         )
     }
 
@@ -37,7 +37,7 @@ class TripDataMappersTest {
     fun tripDropOffToInfoBlockData() {
         assertThat(
                 TripDataMappers.InfoBlock.tripDropOffToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
-                equalTo(InfoBlockData("Arrival", "NABOO", "7:35 PM"))
+                equalTo(InfoBlockViewData("Arrival", "NABOO", "7:35 PM"))
         )
     }
 
@@ -45,7 +45,7 @@ class TripDataMappersTest {
     fun distanceToInfoBlockData() {
         assertThat(
                 TripDataMappers.InfoBlock.distanceToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.distance),
-                equalTo(InfoBlockData("Trip Distance", "2,478,572 KM"))
+                equalTo(InfoBlockViewData("Trip Distance", "2,478,572 KM"))
         )
     }
 
@@ -53,7 +53,7 @@ class TripDataMappersTest {
     fun durationToInfoBlockData() {
         assertThat(
                 TripDataMappers.InfoBlock.durationToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.duration),
-                equalTo(InfoBlockData("Trip Duration", "5:23:47"))
+                equalTo(InfoBlockViewData("Trip Duration", "5:23:47"))
         )
     }
 

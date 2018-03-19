@@ -1,6 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive.app.trip.ui
 
-import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData
+import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockViewData
 
 /**
  * Created by Vincent on 3/19/2018.
@@ -8,10 +8,10 @@ import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData
 data class TripDetailsViewData(
         val imageUrl: String?,
         val title: String?,
-        val infoTopLeft: InfoBlockData,
-        val infoBottomLeft: InfoBlockData,
-        val infoTopRight: InfoBlockData,
-        val infoBottomRight: InfoBlockData,
+        val infoTopLeft: InfoBlockViewData,
+        val infoBottomLeft: InfoBlockViewData,
+        val infoTopRight: InfoBlockViewData,
+        val infoBottomRight: InfoBlockViewData,
         val rateLabel:String?,
         val rate: Float?
 )
