@@ -98,10 +98,7 @@ class TripListActivity : AppCompatActivity() {
 
         fun bind(trip: Trip) {
             tripId = trip.id
-            Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip.pilot?.avatarPath).into(binding.image)
-            binding.textPilot.text = trip.pilot?.name
-            binding.textFrom.text = trip.pickUp?.name
-            binding.textTo.text = trip.dropOff?.name
+            binding.data = ViewDataMappers.TripListItem.fromTrip(trip)
         }
     }
 
