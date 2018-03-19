@@ -11,12 +11,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.activity.TripActivity
 import fr.bessugesv.starwarschauffeurprive.app.triplist.ViewDataMappers
 import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
+import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
+import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
+import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
 import fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
@@ -45,8 +49,15 @@ class TripListActivity : AppCompatActivity() {
         binding.toolbar.title = getString(R.string.Last_Trips)
 
         ViewModelProviders.of(this).get(TripListViewModel::class.java).getTripList().observe(this, Observer {
-            adapter.data = it ?: emptyList()
-            adapter.notifyDataSetChanged()
+            when (it) {
+                is LOADING -> binding.progressBar.visibility = View.VISIBLE
+                is SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    adapter.data = it.data
+                    adapter.notifyDataSetChanged()
+                }
+                is ERROR -> binding.progressBar.visibility = View.GONE
+            }
         })
     }
 

@@ -3,8 +3,11 @@ package fr.bessugesv.starwarschauffeurprive.app.triplist.vm
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.common.arch.DataResult
+import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
+import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
+import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,25 +18,26 @@ import retrofit2.Response
  */
 class TripListViewModel : ViewModel() {
 
-    private val tripList : MutableLiveData<List<Trip>> by lazy {
+    private val tripList : MutableLiveData<DataResult<List<Trip>>> by lazy {
         loadTripList()
-        MutableLiveData<List<Trip>>()
+        MutableLiveData<DataResult<List<Trip>>>().also { it.value = LOADING() }
     }
 
-    fun getTripList(): LiveData<List<Trip>> = tripList
+    fun getTripList(): LiveData<DataResult<List<Trip>>> = tripList
 
     private fun loadTripList() {
         StarWarsApi.service.listTrips().enqueue(object : Callback<List<Trip>> {
             override fun onResponse(call: Call<List<Trip>>?, response: Response<List<Trip>>?) {
-                response.let {
-                    if (it != null && it.isSuccessful) {
-                        tripList.postValue(it.body())
-                    }
+                if (response != null && response.isSuccessful) {
+                    tripList.postValue(SUCCESS(response.body() ?: emptyList()))
+                }
+                else {
+                    tripList.postValue(ERROR())
                 }
             }
 
             override fun onFailure(call: Call<List<Trip>>?, t: Throwable) {
-                Log.e("TripListActivity", "error getting trip list", t)
+                tripList.postValue(ERROR())
             }
         })
     }
