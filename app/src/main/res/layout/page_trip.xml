@@ -56,7 +56,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/TextPageTitle"/>
 
-                <fr.bessugesv.starwarschauffeurprive.common.SeparatorView
+                <fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
                     android:id="@+id/divider"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/separator_height"
@@ -123,7 +123,7 @@
                     android:text="@string/Pilot_Rating"
                     style="@style/TextInfoLabel"/>
 
-                <fr.bessugesv.starwarschauffeurprive.common.RateView
+                <fr.bessugesv.starwarschauffeurprive.common.ui.RateView
                     android:id="@+id/rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

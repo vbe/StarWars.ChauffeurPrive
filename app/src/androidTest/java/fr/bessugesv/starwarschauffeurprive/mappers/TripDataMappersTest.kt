@@ -5,7 +5,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import fr.bessugesv.starwarschauffeurprive.YAVIN_4_TO_NABOO_TRIP
 import fr.bessugesv.starwarschauffeurprive.app.trip.mappers.TripDataMappers
-import fr.bessugesv.starwarschauffeurprive.common.infoblock.InfoBlockData
+import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData
 import org.hamcrest.Matchers.equalTo
 import org.junit.Assert.assertThat
 import org.junit.Before

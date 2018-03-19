@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripActivity
-import fr.bessugesv.starwarschauffeurprive.common.SeparatorView
+import fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip

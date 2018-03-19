@@ -1,9 +1,10 @@
 package fr.bessugesv.starwarschauffeurprive.app.trip.mappers
 
-import fr.bessugesv.starwarschauffeurprive.common.infoblock.InfoBlockData
+import fr.bessugesv.starwarschauffeurprive.common.ui.infoblock.InfoBlockData
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import android.content.Context
 import fr.bessugesv.starwarschauffeurprive.R
+import fr.bessugesv.starwarschauffeurprive.common.utils.Format
 import fr.bessugesv.starwarschauffeurprive.model.Destination
 import fr.bessugesv.starwarschauffeurprive.model.Distance
 import java.text.SimpleDateFormat
@@ -41,6 +42,6 @@ object TripDataMappers {
 
     fun durationToInfoBlockData(context: Context, duration: Long?) = InfoBlockData(
             context.getString(R.string.Trip_Duration),
-            duration?.toString() ?: ""
+            duration?.let { Format.millisecToReadableTime(it) } ?: ""
     )
 }

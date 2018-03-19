@@ -1,4 +1,4 @@
-package fr.bessugesv.starwarschauffeurprive.common
+package fr.bessugesv.starwarschauffeurprive.common.ui
 
 import android.content.Context
 import android.graphics.Canvas

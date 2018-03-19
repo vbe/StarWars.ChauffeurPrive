@@ -1,4 +1,4 @@
-package fr.bessugesv.starwarschauffeurprive.common.infoblock
+package fr.bessugesv.starwarschauffeurprive.common.ui.infoblock
 
 /**
  * Created by Vincent on 3/18/2018.
