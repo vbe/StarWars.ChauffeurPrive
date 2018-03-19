@@ -26,10 +26,27 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <include layout="@layout/view_trip_details"
-                android:id="@+id/details"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/view_trip_details"
+                    android:id="@+id/details"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+                <include layout="@layout/view_error"
+                    android:id="@+id/error_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
 
         </android.support.v4.widget.NestedScrollView>
 

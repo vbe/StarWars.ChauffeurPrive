@@ -2,9 +2,8 @@ package fr.bessugesv.starwarschauffeurprive.app.trip.vm
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.util.Log
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
+import fr.bessugesv.starwarschauffeurprive.common.arch.*
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,18 +12,20 @@ import retrofit2.Response
 /**
  * Created by Vincent on 3/19/2018.
  */
-class TripViewModel : ViewModel() {
+class TripViewModel : SingleDataViewModelWithParams<Long, Trip>() {
 
     private var tripId: Long? = null
-    private val trip : MutableLiveData<Trip> by lazy {
-        MutableLiveData<Trip>()
+    private val trip : MutableLiveData<DataResult<Trip>> by lazy {
+        MutableLiveData<DataResult<Trip>>().also {
+            it.value = LOADING()
+        }
     }
 
-    fun getTrip(tripId: Long): LiveData<Trip> = if (tripId == this.tripId) {
+    override fun getData(params: Long?): LiveData<DataResult<Trip>> = if (params == this.tripId) {
         trip
     }
     else {
-        this.tripId = tripId
+        this.tripId = params
         loadTrip()
         trip
     }
@@ -33,13 +34,19 @@ class TripViewModel : ViewModel() {
         tripId?.let {
             StarWarsApi.service.trip(it).enqueue(object : Callback<Trip> {
                 override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
-                    trip.postValue(response?.body())
+                    if (response != null && response.isSuccessful) {
+                        response.body().let {
+                            trip.postValue(if (it != null) SUCCESS(it) else ERROR())
+                        }
+                    }
+                    else {
+                        trip.postValue(ERROR())
+                    }
                 }
 
                 override fun onFailure(call: Call<Trip>?, t: Throwable?) {
-                    Log.e("TripListActivity", "error getting trip list", t)
+                    trip.postValue(ERROR())
                 }
-
             })
         }
     }

@@ -2,7 +2,6 @@ package fr.bessugesv.starwarschauffeurprive.app.triplist.vm
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.common.arch.*
 import fr.bessugesv.starwarschauffeurprive.model.Trip

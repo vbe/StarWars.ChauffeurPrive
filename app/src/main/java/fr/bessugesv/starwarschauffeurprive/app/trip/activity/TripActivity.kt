@@ -1,6 +1,5 @@
 package fr.bessugesv.starwarschauffeurprive.app.trip.activity
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
@@ -10,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.app.trip.ViewDataMappers
 import fr.bessugesv.starwarschauffeurprive.app.trip.vm.TripViewModel
+import fr.bessugesv.starwarschauffeurprive.common.arch.SingleDataPresenterWithParams
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripBinding
 
 /**
@@ -35,9 +35,15 @@ class TripActivity : AppCompatActivity()  {
             it.title = ""
         }
 
-        ViewModelProviders.of(this).get(TripViewModel::class.java).getTrip(tripId).observe(this, Observer {
-            binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this, it)
-        })
+        SingleDataPresenterWithParams(
+                this,
+                ViewModelProviders.of(this).get(TripViewModel::class.java),
+                binding.progressBar,
+                binding.errorView!!,
+                {
+                    binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this, it)
+                }
+        ).load(tripId)
     }
 
     override fun onSupportNavigateUp(): Boolean {

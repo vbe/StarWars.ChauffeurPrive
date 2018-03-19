@@ -8,9 +8,9 @@ import fr.bessugesv.starwarschauffeurprive.databinding.ViewErrorBinding
 /**
  * Created by Vincent on 3/19/2018.
  */
-class SingleDataPresenter<D>(
+open class SingleDataPresenterWithParams<in P, D>(
         val owner: LifecycleOwner,
-        val model: SingleDataViewModel<D>,
+        val model: SingleDataViewModelWithParams<P, D>,
         val loadingView: View,
         val errorView: ViewErrorBinding,
         val onSuccess: (D) -> Unit) {
@@ -21,8 +21,8 @@ class SingleDataPresenter<D>(
         }
     }
 
-    fun load() {
-        model.getData().observe(owner, Observer {
+    fun load(params: P? = null) {
+        model.getData(params).observe(owner, Observer {
             when (it) {
                 is LOADING -> {
                     loadingView.visibility = View.VISIBLE
@@ -41,3 +41,13 @@ class SingleDataPresenter<D>(
         })
     }
 }
+
+class SingleDataPresenter<D>(
+        owner: LifecycleOwner,
+        model: SingleDataViewModel<D>,
+        loadingView: View,
+        errorView: ViewErrorBinding,
+        onSuccess: (D) -> Unit)
+    : SingleDataPresenterWithParams<Any?, D>(
+        owner, model, loadingView, errorView, onSuccess
+)

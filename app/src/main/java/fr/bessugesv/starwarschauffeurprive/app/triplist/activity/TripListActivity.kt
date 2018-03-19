@@ -1,20 +1,16 @@
 package fr.bessugesv.starwarschauffeurprive.app.triplist.activity
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.app.triplist.ui.TripList
 import fr.bessugesv.starwarschauffeurprive.app.triplist.ui.TripListSeparator
 import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
-import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
-import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
-import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
 import fr.bessugesv.starwarschauffeurprive.common.arch.SingleDataPresenter
+import fr.bessugesv.starwarschauffeurprive.common.arch.SingleDataPresenterWithParams
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 
 /**
