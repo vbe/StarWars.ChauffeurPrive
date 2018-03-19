@@ -1,5 +1,7 @@
-package fr.bessugesv.starwarschauffeurprive.app.triplist
+package fr.bessugesv.starwarschauffeurprive.app.triplist.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.graphics.Canvas
 import android.graphics.RectF
@@ -13,6 +15,8 @@ import android.view.ViewGroup
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.activity.TripActivity
+import fr.bessugesv.starwarschauffeurprive.app.triplist.ViewDataMappers
+import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
 import fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
@@ -40,26 +44,13 @@ class TripListActivity : AppCompatActivity() {
 
         binding.toolbar.title = getString(R.string.Last_Trips)
 
-        StarWarsApi.service.listTrips().enqueue(object : Callback<List<Trip>> {
-            override fun onResponse(call: Call<List<Trip>>?, response: Response<List<Trip>>?) {
-                response.let {
-                    if (it != null && it.isSuccessful) {
-                        adapter.data = it.body() ?: emptyList()
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<Trip>>?, t: Throwable) {
-                Log.e("TripListActivity", "error getting trip list", t)
-            }
-
+        ViewModelProviders.of(this).get(TripListViewModel::class.java).getTripList().observe(this, Observer {
+            adapter.data = it ?: emptyList()
+            adapter.notifyDataSetChanged()
         })
     }
 
     class Separator : RecyclerView.ItemDecoration() {
-
-
         override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
             if (HEIGHT == -1) {
                 HEIGHT = parent.context.resources.getDimensionPixelSize(R.dimen.separator_height)
@@ -69,7 +60,7 @@ class TripListActivity : AppCompatActivity() {
                 val view = parent.getChildAt(i)
                 val position = parent.getChildAdapterPosition(view)
                 if (position < parent.adapter.itemCount - 1) {
-                    SeparatorView.drawOn(canvas, RectF(view.x, view.y + view.height - HEIGHT/2, view.x + view.width, view.y + view.height + HEIGHT/2))
+                    SeparatorView.drawOn(canvas, RectF(view.x, view.y + view.height - HEIGHT /2, view.x + view.width, view.y + view.height + HEIGHT /2))
                 }
             }
         }

@@ -7,16 +7,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import fr.bessugesv.starwarschauffeurprive.R
-import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.ViewDataMappers
 import fr.bessugesv.starwarschauffeurprive.app.trip.vm.TripViewModel
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripBinding
-import fr.bessugesv.starwarschauffeurprive.model.Trip
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by Vincent on 3/18/2018.
