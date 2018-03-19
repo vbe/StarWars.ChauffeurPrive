@@ -58,7 +58,7 @@ abstract class ParsingTest {
     fun tripHasYavin4ToNabooTripPilot(pilot: Pilot) {
         with(YAVIN_4_TO_NABOO_TRIP.pilot!!) {
             assertThat(pilot.name, equalTo(name))
-            assertThat(pilot.avatarPath, equalTo(avatarPath))
+            assertThat(pilot.avatar?.path, equalTo(avatar?.path))
             assertThat(pilot.rating, equalTo(rating))
         }
     }
@@ -80,7 +80,7 @@ abstract class ParsingTest {
 
     fun destinationsAreEqual(destination1: Destination, destination2: Destination) {
         assertThat(destination1.name, equalTo(destination2.name))
-        assertThat(destination1.picturePath, equalTo(destination2.picturePath))
+        assertThat(destination1.picture?.path, equalTo(destination2.picture?.path))
         assertThat(destination1.date, equalTo(destination2.date))
     }
 
