@@ -9,12 +9,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fr.bessugesv.starwarschauffeurprive.R
-import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.activity.TripActivity
 import fr.bessugesv.starwarschauffeurprive.app.triplist.ViewDataMappers
 import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
@@ -25,38 +23,55 @@ import fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
 import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by Vincent on 3/17/2018.
  */
 class TripListActivity : AppCompatActivity() {
 
+    lateinit var model: TripListViewModel
+    lateinit var binding: ActivityTripListBinding
+    lateinit var adapter: Adapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val adapter = Adapter()
-        val binding = DataBindingUtil.setContentView<ActivityTripListBinding>(this, R.layout.activity_trip_list)
+        model = ViewModelProviders.of(this).get(TripListViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_list)
+        adapter = Adapter()
 
-        binding.list.let {
-            it.layoutManager = LinearLayoutManager(this)
-            it.adapter = adapter
-            it.addItemDecoration(Separator())
+        with(binding) {
+            list.let {
+                it.layoutManager = LinearLayoutManager(this@TripListActivity)
+                it.adapter = adapter
+                it.addItemDecoration(Separator())
+            }
+            toolbar.title = getString(R.string.Last_Trips)
+            btnReload.setOnClickListener {
+                loadData()
+            }
         }
 
-        binding.toolbar.title = getString(R.string.Last_Trips)
+        loadData()
+    }
 
-        ViewModelProviders.of(this).get(TripListViewModel::class.java).getTripList().observe(this, Observer {
+    private fun loadData() {
+        model.getTripList().observe(this, Observer {
             when (it) {
-                is LOADING -> binding.progressBar.visibility = View.VISIBLE
+                is LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.errorView.visibility = View.GONE
+                }
                 is SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
+                    binding.errorView.visibility = View.GONE
                     adapter.data = it.data
                     adapter.notifyDataSetChanged()
                 }
-                is ERROR -> binding.progressBar.visibility = View.GONE
+                is ERROR -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.errorView.visibility = View.VISIBLE
+                }
             }
         })
     }
