@@ -28,7 +28,7 @@ class TripDataMappersTest {
     @Test
     fun tripPickUpToInfoBlockData() {
         assertThat(
-                TripDataMappers.tripPickUpToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
+                TripDataMappers.InfoBlock.tripPickUpToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
                 equalTo(InfoBlockData("Departure", "YAVIN 4", "2:12 PM"))
         )
     }
@@ -36,7 +36,7 @@ class TripDataMappersTest {
     @Test
     fun tripDropOffToInfoBlockData() {
         assertThat(
-                TripDataMappers.tripDropOffToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
+                TripDataMappers.InfoBlock.tripDropOffToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP),
                 equalTo(InfoBlockData("Arrival", "NABOO", "7:35 PM"))
         )
     }
@@ -44,7 +44,7 @@ class TripDataMappersTest {
     @Test
     fun distanceToInfoBlockData() {
         assertThat(
-                TripDataMappers.distanceToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.distance),
+                TripDataMappers.InfoBlock.distanceToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.distance),
                 equalTo(InfoBlockData("Trip Distance", "2,478,572 KM"))
         )
     }
@@ -52,7 +52,7 @@ class TripDataMappersTest {
     @Test
     fun durationToInfoBlockData() {
         assertThat(
-                TripDataMappers.durationToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.duration),
+                TripDataMappers.InfoBlock.durationToInfoBlockData(appContext, YAVIN_4_TO_NABOO_TRIP.duration),
                 equalTo(InfoBlockData("Trip Duration", "5:23:47"))
         )
     }

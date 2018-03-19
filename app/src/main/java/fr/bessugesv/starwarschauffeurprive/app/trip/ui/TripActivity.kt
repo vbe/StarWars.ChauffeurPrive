@@ -10,13 +10,11 @@ import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.mappers.TripDataMappers
-import fr.bessugesv.starwarschauffeurprive.databinding.PageTripBinding
+import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by Vincent on 3/18/2018.
@@ -32,7 +30,7 @@ class TripActivity : AppCompatActivity()  {
             return
         }
 
-        val binding = DataBindingUtil.setContentView<PageTripBinding>(this, R.layout.page_trip)
+        val binding = DataBindingUtil.setContentView<ActivityTripBinding>(this, R.layout.activity_trip)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
@@ -43,20 +41,7 @@ class TripActivity : AppCompatActivity()  {
 
         StarWarsApi.service.trip(tripId).enqueue(object : Callback<Trip> {
             override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
-                val trip = response?.body()
-                binding.textPilot.text = trip?.pilot?.name
-                Glide.with(binding.root.context).load(StarWarsApi.BASE_URL+trip?.pilot?.avatarPath).into(binding.image)
-
-                // pick up
-                binding.infoPickUp?.data = TripDataMappers.tripPickUpToInfoBlockData(this@TripActivity, trip)
-                // drop off
-                binding.infoDropOff?.data = TripDataMappers.tripDropOffToInfoBlockData(this@TripActivity, trip)
-                // distance
-                binding.infoDistance?.data = TripDataMappers.distanceToInfoBlockData(this@TripActivity, trip?.distance)
-                // duration
-                binding.infoDuration?.data = TripDataMappers.durationToInfoBlockData(this@TripActivity, trip?.duration)
-                // rating
-                binding.rate.rate = trip?.pilot?.rating
+                binding.details?.data = TripDataMappers.TripDetails.tripToTripDetailsViewData(this@TripActivity, response?.body())
             }
 
             override fun onFailure(call: Call<Trip>?, t: Throwable?) {

@@ -1,6 +1,7 @@
 package fr.bessugesv.starwarschauffeurprive.common.ui
 
 import android.content.Context
+import android.databinding.BindingAdapter
 import android.databinding.DataBindingUtil
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -52,4 +53,9 @@ class RateView : FrameLayout {
             }
             field = value
         }
+}
+
+@BindingAdapter("rate")
+fun RateView.setRate(rate: Float?) {
+    this.rate = rate
 }

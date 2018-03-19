@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="data"
+            type="fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripDetailsViewData"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/trip_page_avatar_size"
+            android:layout_height="@dimen/trip_page_avatar_size"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:imageUrl="@{data.imageUrl}"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:lines="2"
+            android:layout_marginStart="120dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextPageTitle"
+            android:text="@{data.title}"/>
+
+        <fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_height"
+            android:layout_marginTop="@dimen/margin_big"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
+        <include layout="@layout/view_info_block"
+            android:id="@+id/info_top_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:data="@{data.infoTopLeft}"/>
+
+        <include layout="@layout/view_info_block"
+            android:id="@+id/info_bottom_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:layout_constraintTop_toBottomOf="@+id/info_top_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:data="@{data.infoBottomLeft}"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <include layout="@layout/view_info_block"
+            android:id="@+id/info_top_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="@+id/guideline_middle"
+            app:data="@{data.infoTopRight}"/>
+
+        <include layout="@layout/view_info_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:layout_constraintTop_toBottomOf="@+id/info_top_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_middle"
+            app:data="@{data.infoBottomRight}"/>
+
+        <TextView
+            android:id="@+id/text_rate_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/info_bottom_left"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            style="@style/TextInfoLabel"
+            android:text="@{data.rateLabel}"/>
+
+        <fr.bessugesv.starwarschauffeurprive.common.ui.RateView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_rate_label"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginLeft="@dimen/margin_big"
+            android:layout_marginStart="@dimen/margin_big"
+            app:rate="@{data.rate}"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
