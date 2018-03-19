@@ -68,5 +68,7 @@ object StarWarsApi {
             .addConverterFactory(GsonConverterFactory.create(getGson(baseUrl)))
             .build()
 
-    val service = getRetrofit().create(StarWarsService::class.java)
+    fun getService(baseUrl: String = BASE_URL) = getRetrofit(baseUrl).create(StarWarsService::class.java)
+
+    var service = getService()
 }

@@ -35,7 +35,7 @@ abstract class ParsingTest {
     @Before
     open fun setup() {
         server = MockWebServer().also { it.start() }
-        service = StarWarsApi.getRetrofit(server.url("/").toString()).create(StarWarsService::class.java)
+        service = StarWarsApi.getService(server.url("/").toString())
     }
 
     fun tripContainsData(trip: Trip) {
