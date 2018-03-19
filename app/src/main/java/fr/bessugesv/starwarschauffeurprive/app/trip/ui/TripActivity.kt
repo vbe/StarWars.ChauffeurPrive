@@ -6,10 +6,9 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.bumptech.glide.Glide
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
-import fr.bessugesv.starwarschauffeurprive.app.trip.mappers.TripDataMappers
+import fr.bessugesv.starwarschauffeurprive.app.trip.ViewDataMappers
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
@@ -41,7 +40,7 @@ class TripActivity : AppCompatActivity()  {
 
         StarWarsApi.service.trip(tripId).enqueue(object : Callback<Trip> {
             override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
-                binding.details?.data = TripDataMappers.TripDetails.tripToTripDetailsViewData(this@TripActivity, response?.body())
+                binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this@TripActivity, response?.body())
             }
 
             override fun onFailure(call: Call<Trip>?, t: Throwable?) {
