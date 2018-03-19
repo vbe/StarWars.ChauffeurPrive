@@ -3,26 +3,18 @@ package fr.bessugesv.starwarschauffeurprive.app.triplist.activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
-import android.graphics.Canvas
-import android.graphics.RectF
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import fr.bessugesv.starwarschauffeurprive.R
-import fr.bessugesv.starwarschauffeurprive.app.trip.activity.TripActivity
-import fr.bessugesv.starwarschauffeurprive.app.triplist.ViewDataMappers
+import fr.bessugesv.starwarschauffeurprive.app.triplist.ui.TripList
+import fr.bessugesv.starwarschauffeurprive.app.triplist.ui.TripListSeparator
 import fr.bessugesv.starwarschauffeurprive.app.triplist.vm.TripListViewModel
 import fr.bessugesv.starwarschauffeurprive.common.arch.ERROR
 import fr.bessugesv.starwarschauffeurprive.common.arch.LOADING
 import fr.bessugesv.starwarschauffeurprive.common.arch.SUCCESS
-import fr.bessugesv.starwarschauffeurprive.common.ui.SeparatorView
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripListBinding
-import fr.bessugesv.starwarschauffeurprive.databinding.ItemTripListBinding
-import fr.bessugesv.starwarschauffeurprive.model.Trip
 
 /**
  * Created by Vincent on 3/17/2018.
@@ -31,20 +23,20 @@ class TripListActivity : AppCompatActivity() {
 
     lateinit var model: TripListViewModel
     lateinit var binding: ActivityTripListBinding
-    lateinit var adapter: Adapter
+    lateinit var adapter: TripList.Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         model = ViewModelProviders.of(this).get(TripListViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_list)
-        adapter = Adapter()
+        adapter = TripList.Adapter()
 
         with(binding) {
             list.let {
                 it.layoutManager = LinearLayoutManager(this@TripListActivity)
                 it.adapter = adapter
-                it.addItemDecoration(Separator())
+                it.addItemDecoration(TripListSeparator())
             }
             toolbar.title = getString(R.string.Last_Trips)
             btnReload.setOnClickListener {
@@ -75,62 +67,4 @@ class TripListActivity : AppCompatActivity() {
             }
         })
     }
-
-    class Separator : RecyclerView.ItemDecoration() {
-        override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-            if (HEIGHT == -1) {
-                HEIGHT = parent.context.resources.getDimensionPixelSize(R.dimen.separator_height)
-            }
-
-            for (i in 0 until parent.childCount) {
-                val view = parent.getChildAt(i)
-                val position = parent.getChildAdapterPosition(view)
-                if (position < parent.adapter.itemCount - 1) {
-                    SeparatorView.drawOn(canvas, RectF(view.x, view.y + view.height - HEIGHT /2, view.x + view.width, view.y + view.height + HEIGHT /2))
-                }
-            }
-        }
-
-        companion object {
-            var HEIGHT = -1
-        }
-    }
-
-
-    class VH(
-            parent: ViewGroup,
-            val binding: ItemTripListBinding = ItemTripListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-        : RecyclerView.ViewHolder(binding.root) {
-
-        var tripId: Long? = null
-
-        init {
-            itemView.setOnClickListener { view ->
-                tripId?.let {
-                    TripActivity.openMe(view.context, it)
-                }
-            }
-        }
-
-        fun bind(trip: Trip) {
-            tripId = trip.id
-            binding.data = ViewDataMappers.TripListItem.fromTrip(trip)
-        }
-    }
-
-
-    class Adapter : RecyclerView.Adapter<VH>() {
-        var data = emptyList<Trip>()
-
-        override fun getItemCount() = data.size
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VH(parent)
-
-        override fun onBindViewHolder(holder: VH, position: Int) {
-            holder.bind(data[position])
-        }
-    }
-
-
-
 }
