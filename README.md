@@ -4,10 +4,6 @@
 
 ## TODO
 
-- Encapsulate VM data in holders with state (loading, error, successful)
-- Handle API error cases
-- Why clicking on Grand Moff opens Dark Maul?
-- Rate: handle .5 values
 - Ripple
 - Swipe to refresh
 - Add tests for all data mappers

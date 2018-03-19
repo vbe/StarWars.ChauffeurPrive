@@ -1,4 +1,4 @@
-package fr.bessugesv.starwarschauffeurprive.common.ui
+package fr.bessugesv.starwarschauffeurprive.common.ui.rating
 
 import android.content.Context
 import android.databinding.BindingAdapter
@@ -22,9 +22,9 @@ class RateView : FrameLayout {
     private val binding: ViewRateBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.view_rate, this, true)
 
     private val starSize = resources.getDimensionPixelSize(R.dimen.rate_star_size)
-    val starImages: List<ImageView> by lazy {
+    val starImages: List<StarView> by lazy {
         List(5, {
-            ImageView(context).also {
+            StarView(context).also {
                 binding.starContainer.addView(it, starSize, starSize)
             }
         })
@@ -42,13 +42,8 @@ class RateView : FrameLayout {
             else {
                 binding.textNoRate.visibility = View.GONE
                 binding.starContainer.visibility = View.VISIBLE
-                starImages.forEachIndexed { index, imageView ->
-                    imageView.setImageResource(
-                            if (value >= index + 1)
-                                R.drawable.img_star_filled
-                            else
-                                R.drawable.img_star_empty
-                    )
+                starImages.forEachIndexed { index, starView ->
+                    starView.value = value - index
                 }
             }
             field = value

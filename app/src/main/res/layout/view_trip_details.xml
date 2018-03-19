@@ -110,7 +110,7 @@
             style="@style/TextInfoLabel"
             android:text="@{data.rateLabel}"/>
 
-        <fr.bessugesv.starwarschauffeurprive.common.ui.RateView
+        <fr.bessugesv.starwarschauffeurprive.common.ui.rating.RateView
             android:id="@+id/rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
