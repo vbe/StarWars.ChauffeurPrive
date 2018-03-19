@@ -1,5 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive.api
 
+import fr.bessugesv.starwarschauffeurprive.TestHelpers
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import org.junit.Test
 
@@ -12,7 +13,7 @@ class TripParsingTest : ParsingTest() {
 
     override fun setup() {
         super.setup()
-        enqueueMockFile("trips_1.json")
+        TestHelpers.enqueueMockFile(server, "trips_1.json")
         trip = service.trip(1).execute().body()!!
     }
 

@@ -24,13 +24,6 @@ abstract class ParsingTest {
     lateinit var service: StarWarsService
     lateinit var server: MockWebServer
 
-    fun enqueueMockFile(fileName: String) {
-        server.enqueue(MockResponse().apply {
-            setResponseCode(200)
-            body = Buffer().apply { writeAll(FileSystem.SYSTEM.source(File("./mockdata/$fileName"))) }
-        })
-    }
-
     @CallSuper
     @Before
     open fun setup() {
