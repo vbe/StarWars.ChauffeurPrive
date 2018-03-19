@@ -45,7 +45,7 @@ class TripListParsingTest : ParsingTest() {
     }
 
     @Test
-    fun trip1HasRightDripOff() {
+    fun trip1HasRightDropOff() {
         tripHasYavin4ToNabooTripDropOff(trips[0].dropOff!!)
     }
 }

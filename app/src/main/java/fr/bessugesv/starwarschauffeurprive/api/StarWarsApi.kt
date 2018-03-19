@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 /**
  * Created by Vincent on 3/17/2018.
@@ -56,7 +57,7 @@ object StarWarsApi {
 
 
     fun getGson() = GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+            .registerTypeAdapter(Date::class.java, DateTypeAdapter())
             .create()
 
     fun getRetrofit(baseUrl: String = BASE_URL) = Retrofit.Builder()
