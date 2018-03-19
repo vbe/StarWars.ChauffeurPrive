@@ -1,5 +1,7 @@
-package fr.bessugesv.starwarschauffeurprive.app.trip.ui
+package fr.bessugesv.starwarschauffeurprive.app.trip.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -9,6 +11,7 @@ import android.util.Log
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.ViewDataMappers
+import fr.bessugesv.starwarschauffeurprive.app.trip.vm.TripViewModel
 import fr.bessugesv.starwarschauffeurprive.databinding.ActivityTripBinding
 import fr.bessugesv.starwarschauffeurprive.model.Trip
 import retrofit2.Call
@@ -38,17 +41,9 @@ class TripActivity : AppCompatActivity()  {
             it.title = ""
         }
 
-        StarWarsApi.service.trip(tripId).enqueue(object : Callback<Trip> {
-            override fun onResponse(call: Call<Trip>?, response: Response<Trip>?) {
-                binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this@TripActivity, response?.body())
-            }
-
-            override fun onFailure(call: Call<Trip>?, t: Throwable?) {
-                Log.e("TripListActivity", "error getting trip list", t)
-            }
-
+        ViewModelProviders.of(this).get(TripViewModel::class.java).getTrip(tripId).observe(this, Observer {
+            binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this, it)
         })
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
