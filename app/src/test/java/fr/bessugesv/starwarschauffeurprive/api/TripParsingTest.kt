@@ -13,7 +13,7 @@ class TripParsingTest : ParsingTest() {
 
     override fun setup() {
         super.setup()
-        TestHelpers.enqueueMockFile(server, "trips_1.json")
+        enqueueMockFile("trips_1.json")
         trip = service.trip(1).execute().body()!!
     }
 

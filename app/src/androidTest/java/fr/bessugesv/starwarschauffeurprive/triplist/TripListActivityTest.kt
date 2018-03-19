@@ -1,5 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive.triplist
 
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -59,7 +60,7 @@ class TripListActivityTest {
         checkReloadButtonVisibility(false)
         checkProgressBarVisibility(true)
         // this time it works
-        TestHelpers.enqueueMockFile(server, "trips.json")
+        TestHelpers.enqueueMockData(server, InstrumentationRegistry.getContext().assets.open("mockdata/trips.json"))
         // no button or progress bar should be displayed
         checkReloadButtonVisibility(false)
         checkProgressBarVisibility(false)

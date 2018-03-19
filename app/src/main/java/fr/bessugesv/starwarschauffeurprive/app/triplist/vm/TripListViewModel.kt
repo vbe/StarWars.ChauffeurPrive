@@ -23,7 +23,13 @@ class TripListViewModel : ViewModel() {
         MutableLiveData<DataResult<List<Trip>>>().also { it.value = LOADING() }
     }
 
-    fun getTripList(): LiveData<DataResult<List<Trip>>> = tripList
+    fun getTripList(): LiveData<DataResult<List<Trip>>> = tripList.also {
+        // reloading if last value was an error
+        if (it.value is ERROR) {
+            it.postValue(LOADING())
+            loadTripList()
+        }
+    }
 
     private fun loadTripList() {
         StarWarsApi.service.listTrips().enqueue(object : Callback<List<Trip>> {

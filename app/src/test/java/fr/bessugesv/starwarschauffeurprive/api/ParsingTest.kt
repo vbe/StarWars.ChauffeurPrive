@@ -4,6 +4,7 @@ import android.support.annotation.CallSuper
 import com.squareup.okhttp.internal.io.FileSystem
 import com.squareup.okhttp.mockwebserver.MockResponse
 import com.squareup.okhttp.mockwebserver.MockWebServer
+import fr.bessugesv.starwarschauffeurprive.TestHelpers
 import fr.bessugesv.starwarschauffeurprive.YAVIN_4_TO_NABOO_TRIP
 import fr.bessugesv.starwarschauffeurprive.model.Destination
 import fr.bessugesv.starwarschauffeurprive.model.Distance
@@ -23,6 +24,10 @@ abstract class ParsingTest {
 
     lateinit var service: StarWarsService
     lateinit var server: MockWebServer
+
+    fun enqueueMockFile(fileName: String) {
+        TestHelpers.enqueueMockFile(server, File("./mockdata/$fileName"))
+    }
 
     @CallSuper
     @Before

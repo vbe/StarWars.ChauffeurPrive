@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "pilot": {
+      "name": "Dark Vador",
+      "avatar": "/static/dark-vador.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Yavin 4",
+      "picture": "/static/yavin-4.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Naboo",
+      "picture": "/static/naboo.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 2,
+    "pilot": {
+      "name": "Admiral Ackbar",
+      "avatar": "/static/admiral-ackbar.png",
+      "rating": 0.0
+    },
+    "distance": {
+      "value": 24785727853,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Naboo",
+      "picture": "/static/naboo.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Coruscant",
+      "picture": "/static/coruscant.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 3,
+    "pilot": {
+      "name": "Boba Fett",
+      "avatar": "/static/boba-fett.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Hoth",
+      "picture": "/static/hoth.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Tatooine",
+      "picture": "/static/tatooine.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 4,
+    "pilot": {
+      "name": "Chewee",
+      "avatar": "/static/chewee.png",
+      "rating": 4.2
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Coruscant",
+      "picture": "/static/coruscant.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Hoth",
+      "picture": "/static/hoth.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 5,
+    "pilot": {
+      "name": "Darth Maul",
+      "avatar": "/static/darth-maul.png",
+      "rating": 4.4
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Coruscant",
+      "picture": "/static/coruscant.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Naboo",
+      "picture": "/static/naboo.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 5,
+    "pilot": {
+      "name": "Grand Moff",
+      "avatar": "/static/grand-moff.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Tatooine",
+      "picture": "/static/tatooine.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Coruscant",
+      "picture": "/static/coruscant.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  },
+  {
+    "id": 6,
+    "pilot": {
+      "name": "General Grievous",
+      "avatar": "/static/general-grievous.png",
+      "rating": 3.0
+    },
+    "distance": {
+      "value": 2478572,
+      "unit": "km"
+    },
+    "duration": 19427000,
+    "pick_up": {
+      "name": "Hoth",
+      "picture": "/static/hoth.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Yavin 4",
+      "picture": "/static/yavin-4.png",
+      "date": "2017-12-09T19:35:51Z"
+    }
+  }
+]
