@@ -21,14 +21,16 @@ class TripViewModel : SingleDataViewModelWithParams<Long, Trip>() {
         }
     }
 
-    override fun getData(params: Long?): LiveData<DataResult<Trip>> = if (params == this.tripId) {
-        trip
-    }
-    else {
-        this.tripId = params
-        loadTrip()
-        trip
-    }
+    override fun getData(params: Long?): LiveData<DataResult<Trip>> =
+            if (params == this.tripId && trip.value !is ERROR) {
+                trip
+            }
+            else {
+                this.tripId = params
+                trip.postValue(LOADING())
+                loadTrip()
+                trip
+            }
 
     private fun loadTrip() {
         tripId?.let {

@@ -15,13 +15,16 @@ open class SingleDataPresenterWithParams<in P, D>(
         val errorView: ViewErrorBinding,
         val onSuccess: (D) -> Unit) {
 
+    private var params: P? = null
+
     init {
         errorView.btnReload.setOnClickListener {
-            load()
+            load(params)
         }
     }
 
     fun load(params: P? = null) {
+        this.params = params
         model.getData(params).observe(owner, Observer {
             when (it) {
                 is LOADING -> {
