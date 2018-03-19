@@ -11,7 +11,7 @@ class Destination {
     @SerializedName(StarWarsApi.Schema.Destination.NAME)
     var name: String? = null
     @SerializedName(StarWarsApi.Schema.Destination.PICTURE)
-    var picturePath: String? = null
+    var picture: Image? = null
     @SerializedName(StarWarsApi.Schema.Destination.DATE)
     var date: Date? = null
 }

@@ -1,9 +1,6 @@
 package fr.bessugesv.starwarschauffeurprive
 
-import fr.bessugesv.starwarschauffeurprive.model.Destination
-import fr.bessugesv.starwarschauffeurprive.model.Distance
-import fr.bessugesv.starwarschauffeurprive.model.Pilot
-import fr.bessugesv.starwarschauffeurprive.model.Trip
+import fr.bessugesv.starwarschauffeurprive.model.*
 import java.util.*
 
 /**
@@ -14,7 +11,7 @@ val YAVIN_4_TO_NABOO_TRIP = Trip().apply {
     id = 1L
     pilot = Pilot().apply {
         name = "Dark Vador"
-        avatarPath = "/static/dark-vador.png"
+        avatar = Image("", "/static/dark-vador.png")
         rating = 5.0f
     }
     distance = Distance().apply {
@@ -24,7 +21,7 @@ val YAVIN_4_TO_NABOO_TRIP = Trip().apply {
     duration = 19427000L
     pickUp = Destination().apply {
         name = "Yavin 4"
-        picturePath = "/static/yavin-4.png"
+        picture = Image("", "/static/yavin-4.png")
         date = Calendar.getInstance(TimeZone.getDefault()).apply {
             set(Calendar.YEAR, 2017)
             set(Calendar.MONTH, Calendar.DECEMBER)
@@ -37,7 +34,7 @@ val YAVIN_4_TO_NABOO_TRIP = Trip().apply {
     }
     dropOff = Destination().apply {
         name = "Naboo"
-        picturePath = "/static/naboo.png"
+        picture = Image("", "/static/naboo.png")
         date = Calendar.getInstance(TimeZone.getDefault()).apply {
             set(Calendar.YEAR, 2017)
             set(Calendar.MONTH, Calendar.DECEMBER)

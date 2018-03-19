@@ -5,7 +5,6 @@
 ## TODO
 
 - Encapsulate VM data in holders with state (loading, error, successful)
-- Helper to get full avatar urls
 - Handle API error cases
 - Why clicking on Grand Moff opens Dark Maul?
 - Rate: handle .5 values

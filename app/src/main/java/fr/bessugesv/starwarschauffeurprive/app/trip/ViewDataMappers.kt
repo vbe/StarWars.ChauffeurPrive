@@ -51,7 +51,7 @@ object ViewDataMappers {
 
     object TripDetails {
         fun fromTrip(context: Context, trip: Trip?) = TripDetailsViewData(
-                StarWarsApi.BASE_URL+trip?.pilot?.avatarPath,
+                trip?.pilot?.avatar?.url,
                 trip?.pilot?.name,
                 InfoBlock.fromTripPickUp(context, trip),
                 InfoBlock.fromDistance(context, trip?.distance),

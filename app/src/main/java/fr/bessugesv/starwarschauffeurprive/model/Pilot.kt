@@ -10,7 +10,7 @@ class Pilot {
     @SerializedName(StarWarsApi.Schema.Pilot.NAME)
     var name: String? = null
     @SerializedName(StarWarsApi.Schema.Pilot.AVATAR)
-    var avatarPath: String? = null
+    var avatar: Image? = null
     @SerializedName(StarWarsApi.Schema.Pilot.RATING)
     var rating: Float? = null
 }
