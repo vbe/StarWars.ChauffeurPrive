@@ -4,7 +4,6 @@
 
 ## TODO
 
-- Implement details full view
 - Add tests for all data mappers
 - Implement adapter delegation
 - Add transition animation between list avatar and page avatar
