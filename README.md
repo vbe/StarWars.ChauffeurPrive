@@ -4,7 +4,6 @@
 
 ## TODO
 
-- Ripple
 - Swipe to refresh
 - Add rates on list
 - Implement details full view
