@@ -58,7 +58,7 @@ class RateView : FrameLayout {
 
     fun updateStarValues() {
         starImages?.forEachIndexed { index, starView ->
-            starView.value = rate ?: 0f - index
+            starView.value = (rate ?: 0f) - index
         }
     }
 }
