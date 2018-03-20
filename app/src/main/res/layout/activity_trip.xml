@@ -2,6 +2,13 @@
 
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="data"
+            type="fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripPageViewData"/>
+
+    </data>
+
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -13,11 +20,31 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent">
 
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll">
+                
+                <ImageView
+                    android:layout_width="155dp"
+                    android:layout_height="155dp"
+                    android:layout_marginTop="32dp"
+                    app:imageUrl="@{data.leftPlanetImageUrl}"/>
+                
+                <ImageView
+                    android:layout_width="310dp"
+                    android:layout_height="310dp"
+                    android:layout_marginStart="98dp"
+                    android:layout_marginLeft="98dp"
+                    app:imageUrl="@{data.rightPlanetImageUrl}"/>
+                
+            </android.support.design.widget.CollapsingToolbarLayout>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:layout_scrollFlags="snap"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -28,12 +55,14 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#000000">
 
                 <include layout="@layout/view_trip_details"
                     android:id="@+id/details"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent"/>
+                    android:layout_width="match_parent"
+                    app:data="@{data.details}"/>
 
                 <ProgressBar
                     android:id="@+id/progress_bar"

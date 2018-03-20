@@ -6,6 +6,7 @@ import android.content.Context
 import fr.bessugesv.starwarschauffeurprive.R
 import fr.bessugesv.starwarschauffeurprive.api.StarWarsApi
 import fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripDetailsViewData
+import fr.bessugesv.starwarschauffeurprive.app.trip.ui.TripPageViewData
 import fr.bessugesv.starwarschauffeurprive.common.utils.Format
 import fr.bessugesv.starwarschauffeurprive.model.Destination
 import fr.bessugesv.starwarschauffeurprive.model.Distance
@@ -17,6 +18,14 @@ import java.text.DecimalFormat
  * Created by Vincent on 3/18/2018.
  */
 object ViewDataMappers {
+
+    object TripPage {
+        fun fromTrip(context: Context, trip: Trip?) = TripPageViewData(
+                trip?.pickUp?.picture?.url,
+                trip?.dropOff?.picture?.url,
+                TripDetails.fromTrip(context, trip)
+        )
+    }
 
     object InfoBlock {
         val TIME_FORMAT = SimpleDateFormat("h:mm a", Locale.getDefault())

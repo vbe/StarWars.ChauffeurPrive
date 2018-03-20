@@ -41,7 +41,7 @@ class TripActivity : AppCompatActivity()  {
                 binding.progressBar,
                 binding.errorView!!,
                 {
-                    binding.details?.data = ViewDataMappers.TripDetails.fromTrip(this, it)
+                    binding.data = ViewDataMappers.TripPage.fromTrip(this, it)
                 }
         ).load(tripId)
     }
