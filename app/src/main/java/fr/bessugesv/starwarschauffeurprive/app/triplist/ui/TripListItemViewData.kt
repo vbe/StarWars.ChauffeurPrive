@@ -7,5 +7,7 @@ data class TripListItemViewData(
         val imageUrl: String?,
         val title: String,
         val from: String,
-        val to: String
+        val to: String,
+        val rate: Float?,
+        val ratingVisible: Boolean = rate ?: 0f > 0f
 )

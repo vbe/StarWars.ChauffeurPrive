@@ -3,7 +3,7 @@
 
     <!-- List items dimens -->
     <dimen name="list_item_avatar_size">56dp</dimen>
-    <dimen name="list_item_pilot_top_margin">22dp</dimen>
+    <dimen name="list_item_pilot_top_margin">6dp</dimen>
     <dimen name="separator_height">10dp</dimen>
 
     <!-- Trip page dimens -->
@@ -11,6 +11,7 @@
 
     <!-- Rate -->
     <dimen name="rate_star_size">40dp</dimen>
+    <dimen name="rate_in_list_star_size">32dp</dimen>
 
     <!-- Common dimens -->
     <dimen name="margin_xxsmall">2dp</dimen>

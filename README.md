@@ -4,7 +4,6 @@
 
 ## TODO
 
-- Add rates on list
 - Implement details full view
 - Add tests for all data mappers
 - Implement adapter delegation

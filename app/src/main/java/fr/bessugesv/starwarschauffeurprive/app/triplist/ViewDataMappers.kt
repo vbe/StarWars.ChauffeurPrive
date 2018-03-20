@@ -13,7 +13,8 @@ object ViewDataMappers {
                 trip?.pilot?.avatar?.url,
                 trip?.pilot?.name ?: "",
                 trip?.pickUp?.name ?: "",
-                trip?.dropOff?.name ?: ""
+                trip?.dropOff?.name ?: "",
+                trip?.pilot?.rating
         )
     }
 }
