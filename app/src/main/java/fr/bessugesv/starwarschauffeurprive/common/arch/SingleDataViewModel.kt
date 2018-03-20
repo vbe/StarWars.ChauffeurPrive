@@ -8,10 +8,10 @@ import android.arch.lifecycle.ViewModel
  */
 
 abstract class SingleDataViewModelWithParams<in P, D> : ViewModel() {
-    abstract fun getData(params: P? = null): LiveData<DataResult<D>>
+    abstract fun getData(params: P? = null, forceReload: Boolean = false): LiveData<DataResult<D>>
 }
 
 abstract class SingleDataViewModel<D> : SingleDataViewModelWithParams<Any?, D>() {
-    override fun getData(params: Any?) = getData()
-    abstract fun getData(): LiveData<DataResult<D>>
+    override fun getData(params: Any?, forceReload: Boolean) = getData(forceReload)
+    abstract fun getData(forceReload: Boolean = false): LiveData<DataResult<D>>
 }

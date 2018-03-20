@@ -40,7 +40,8 @@ class TripListActivity : AppCompatActivity() {
                 binding.errorView!!, {
                     adapter.data = it
                     adapter.notifyDataSetChanged()
-                }
+                },
+                binding.swipeRefresh
         ).load()
     }
 }

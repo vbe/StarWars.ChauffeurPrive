@@ -21,8 +21,8 @@ class TripViewModel : SingleDataViewModelWithParams<Long, Trip>() {
         }
     }
 
-    override fun getData(params: Long?): LiveData<DataResult<Trip>> =
-            if (params == this.tripId && trip.value !is ERROR) {
+    override fun getData(params: Long?, forceReload: Boolean): LiveData<DataResult<Trip>> =
+            if (!forceReload && params == this.tripId && trip.value !is ERROR) {
                 trip
             }
             else {

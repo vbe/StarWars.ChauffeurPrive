@@ -19,9 +19,9 @@ class TripListViewModel : SingleDataViewModel<List<Trip>>() {
         MutableLiveData<DataResult<List<Trip>>>().also { it.value = LOADING() }
     }
 
-    override fun getData(): LiveData<DataResult<List<Trip>>> = tripList.also {
+    override fun getData(forceReload: Boolean): LiveData<DataResult<List<Trip>>> = tripList.also {
         // reloading if last value was an error
-        if (it.value is ERROR) {
+        if (forceReload || it.value is ERROR) {
             it.postValue(LOADING())
             loadTripList()
         }
