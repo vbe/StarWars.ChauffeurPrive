@@ -22,29 +22,31 @@
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll">
+                android:layout_height="230dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
                 
                 <ImageView
                     android:layout_width="155dp"
                     android:layout_height="155dp"
                     android:layout_marginTop="32dp"
-                    app:imageUrl="@{data.leftPlanetImageUrl}"/>
+                    app:imageUrl="@{data.leftPlanetImageUrl}"
+                    app:layout_collapseMode="parallax"/>
                 
                 <ImageView
                     android:layout_width="310dp"
                     android:layout_height="310dp"
                     android:layout_marginStart="98dp"
                     android:layout_marginLeft="98dp"
-                    app:imageUrl="@{data.rightPlanetImageUrl}"/>
+                    app:imageUrl="@{data.rightPlanetImageUrl}"
+                    app:layout_collapseMode="parallax"/>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"/>
                 
             </android.support.design.widget.CollapsingToolbarLayout>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="snap"/>
 
         </android.support.design.widget.AppBarLayout>
 
