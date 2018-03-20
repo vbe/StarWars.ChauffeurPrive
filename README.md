@@ -4,7 +4,6 @@
 
 ## TODO
 
-- Swipe to refresh
 - Add rates on list
 - Implement details full view
 - Add tests for all data mappers

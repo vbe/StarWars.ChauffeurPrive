@@ -113,7 +113,7 @@
         <fr.bessugesv.starwarschauffeurprive.common.ui.rating.RateView
             android:id="@+id/rate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/rate_star_size"
             app:layout_constraintTop_toBottomOf="@+id/text_rate_label"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/margin_big"

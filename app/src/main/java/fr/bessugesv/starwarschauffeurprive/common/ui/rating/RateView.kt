@@ -21,20 +21,14 @@ class RateView : FrameLayout {
 
     private val binding: ViewRateBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.view_rate, this, true)
 
-    private val starSize = resources.getDimensionPixelSize(R.dimen.rate_star_size)
-    val starImages: List<StarView> by lazy {
-        List(5, {
-            StarView(context).also {
-                binding.starContainer.addView(it, starSize, starSize)
-            }
-        })
-    }
+    var starImages: List<StarView>? = null
 
     var rate: Float? = null
         set(value) {
             if (field == value) {
                 return
             }
+            field = value
             if (value == null || value == 0f) {
                 binding.textNoRate.visibility = View.VISIBLE
                 binding.starContainer.visibility = View.GONE
@@ -42,12 +36,31 @@ class RateView : FrameLayout {
             else {
                 binding.textNoRate.visibility = View.GONE
                 binding.starContainer.visibility = View.VISIBLE
-                starImages.forEachIndexed { index, starView ->
-                    starView.value = value - index
-                }
+                updateStarValues()
             }
-            field = value
         }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        if (starImages == null && rate ?: 0f > 0f && height > 0) {
+            createStars()
+            updateStarValues()
+        }
+    }
+
+    fun createStars() {
+        starImages = List(5, {
+            StarView(context).also {
+                binding.starContainer.addView(it, height, height)
+            }
+        })
+    }
+
+    fun updateStarValues() {
+        starImages?.forEachIndexed { index, starView ->
+            starView.value = rate ?: 0f - index
+        }
+    }
 }
 
 @BindingAdapter("rate")
